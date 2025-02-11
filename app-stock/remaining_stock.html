@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remaining Stock</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="add_category.html">Add Category</a>
+        <a href="add_item.html">Add Item</a>
+        <a href="sales.html">Record Sales</a>
+        <a href="remaining_stock.html" class="active">Remaining Stock</a>
+    </div>
+
+    <div class="content">
+        <h1>Remaining Stock</h1>
+        <div id="stockList"></div>
+        <div id="totals"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fetch and display remaining stock and totals
+            $.ajax({
+                url: 'php/remaining_stock.php',
+                type: 'GET',
+                success: function(response) {
+                    $('#stockList').html(response);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

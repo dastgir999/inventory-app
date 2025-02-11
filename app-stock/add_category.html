@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="add_category.html" class="active">Add Category</a>
+        <a href="add_item.html">Add Item</a>
+        <a href="sales.html">Record Sales</a>
+        <a href="remaining_stock.html">Remaining Stock</a>
+    </div>
+
+    <div class="content">
+        <h1>Add Category</h1>
+        <form id="addCategoryForm">
+            <label for="name">Category Name:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Add Category</button>
+        </form>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#addCategoryForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'php/add_category.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#response').html(response);
+                        $('#addCategoryForm')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

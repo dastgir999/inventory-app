@@ -1,0 +1,75 @@
+CREATE DATABASE inventory;
+USE inventory;
+
+-- Categories Table
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Items Table
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL, -- Added total_amount column
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+
+
+
+inventory_app/
+│
+├── index.html                # Home Page
+├── add_category.html         # Add Category Page
+├── add_item.html             # Add Item Page
+├── sales.html                # Record Sales Page
+├── remaining_stock.html      # Remaining Stock Page
+│
+├── css/
+│   └── styles.css            # Global CSS Styles
+│
+├── js/
+│   └── scripts.js            # Global JavaScript Functions
+│
+├── php/
+│   ├── add_category.php      # Backend: Add Category
+│   ├── add_item.php          # Backend: Add Item
+│   ├── sales.php             # Backend: Record Sales
+│   ├── get_categories.php    # Backend: Fetch Categories
+│   ├── get_items.php         # Backend: Fetch Items
+│   └── remaining_stock.php   # Backend: Fetch Remaining Stock
+│
+└── database.sql              # SQL Script to Create Database
+
+
+
+
+//
+
+Complete Application Features
+Add Category:
+
+Users can add new categories.
+
+Add Item:
+
+Users can add new items with a category, quantity, price, and total amount.
+
+Record Sales:
+
+Users can record sales, which updates the quantity and total amount of items.
+
+Remaining Stock:
+
+Users can view the remaining stock, total quantity, and total amount of all items.
+
+Navigation Menu:
+
+A navigation menu allows users to switch between different pages.
+
+This is the complete inventory management application with all the requested features. Let me know if you need further assistance! 😊
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Sales</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="add_category.html">Add Category</a>
+        <a href="add_item.html">Add Item</a>
+        <a href="sales.html" class="active">Record Sales</a>
+        <a href="remaining_stock.html">Remaining Stock</a>
+    </div>
+
+    <div class="content">
+        <h1>Record Sales</h1>
+        <form id="salesForm">
+            <label for="item_id">Item:</label>
+            <select id="item_id" name="item_id" required></select>
+
+            <label for="quantity_sold">Quantity Sold:</label>
+            <input type="number" id="quantity_sold" name="quantity_sold" required>
+
+            <button type="submit">Record Sale</button>
+        </form>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            loadItems('#item_id');
+
+            $('#salesForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'php/sales.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#response').html(response);
+                        $('#salesForm')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
